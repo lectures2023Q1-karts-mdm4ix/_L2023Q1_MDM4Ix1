@@ -40,6 +40,14 @@ public class week11A_UserFunction : MonoBehaviour
         {
             print(MyGameObjects[i].name);
         }
+
+        SayHello();
+        SayHello("say hello");
+        string s = "say hello";
+        SayHello(s);
+        string s1 = "say";
+        string s2 = " hello";
+        SayHello(s1 + s2);
     }
 
     void Update()
@@ -53,6 +61,11 @@ public class week11A_UserFunction : MonoBehaviour
     void SayHello()
     {
         print("say hello");
+    }
+
+    void SayHello(string s)
+    {
+        print(s);
     }
 
     int MyFunction()

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class week11B_Media_Controller : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class week11B_Media_Controller : MonoBehaviour
     int currentMediaIndex = 0;
     public string PlayKey, StopKey;
     bool isPlaying = false;
+    public GameObject FileInfo;
+    public GameObject Content; // FileInfo's Parent
     
     void Start()
     {
@@ -25,6 +28,15 @@ public class week11B_Media_Controller : MonoBehaviour
         else
         {
             StopMedia();
+        }
+
+        // print music file names
+        for (int i = 0; i < AudioClips.Count; i++)
+        {
+            print(AudioClips[i].name);
+            GameObject Clone = Instantiate(FileInfo);
+            Clone.transform.SetParent(Content.transform);
+            Clone.GetComponent<TMP_Text>().text = AudioClips[i].name;
         }
     }
 
@@ -104,5 +116,41 @@ public class week11B_Media_Controller : MonoBehaviour
         }
         Player.clip = AudioClips[currentMediaIndex];
         print(Player.clip.name);
+    }
+
+    public void OnClick_PlayMedia()
+    {
+        PlayMedia();
+    }
+
+    public void OnClick_StopMedia()
+    {
+        StopMedia();
+    }
+
+    public void OnClick_NextMedia()
+    {
+        NextMedia();
+        if (isPlaying)
+        {
+            PlayMedia();
+        }
+        else
+        {
+            StopMedia();
+        }
+    }
+
+    public void OnClick_PrevMedia()
+    {
+        PrevMedia();
+        if (isPlaying)
+        {
+            PlayMedia();
+        }
+        else
+        {
+            StopMedia();
+        }
     }
 }
